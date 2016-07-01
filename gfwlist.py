@@ -17,12 +17,11 @@ def getNetworkGfwlist():
         "https://github.com/gfwlist/gfwlist/blob/master/gfwlist.txt")
     if rsp.status_code != requests.codes.ok:
         return []
-    searchStr = r'<td id="LC\d+" class="blob-code blob-code-inner js-file-line">(\w+)</td>'
+    searchStr = r'<td id="LC[0-9]+" class="blob-code blob-code-inner js-file-line">(.*?)</td>'
     read = rsp.text
     # match = re.findall(searchStr, read.decode("utf-8"))
     match = re.findall(searchStr, read)
-    b64 = "".join(match)
-    gfw = base64.b64decode(b64).decode("utf-8").split("\n")
+    gfw = base64.b64decode("".join(match)).decode("utf-8").split("\n")
     result = []
     for item in gfw:
         if item.startswith("!") or item.startswith("[") or len(item) == 0:
@@ -37,7 +36,7 @@ def makeJsFile(gfwlist=""):
     template = None
     with open(os.getcwd() + sys.SystemSpe() + "gfwlist.tmpl") as tmplFile:
         template = Template(tmplFile.read())
-    out = template.render(List=gfwlist)
+    out = template.render(List=gfwlist, Date=time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()), Code="Py")
     fileName = os.getcwd() + sys.SystemSpe() + \
         time.strftime("%Y_%m_%d_%H_%M_%S.js", time.localtime())
     with open(fileName, "w") as fo:
@@ -55,8 +54,8 @@ else:
     print("faile")
 
 try:
-    oslink(fileName, "~/.Shadowsocks/gfwlist.js")
-except e:
-    print("err:", e)
+    os.replace(fileName, "/Users/theone/.ShadowsocksX/gfwlist.js")
+except Exception as e:
+    print("Copy Err:", e)
 else:
     print("Copy OK")
