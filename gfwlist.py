@@ -55,4 +55,10 @@ if len(gfwlist) > 0:
     print("OK:", fileName)
 else:
     print("faile")
-# os.link(fileName, "~/.Shadowsocks/")
+
+try:
+    oslink(fileName, "~/.Shadowsocks/gfwlist.js")
+except e:
+    print("err:", e)
+else:
+    print("Copy OK")
