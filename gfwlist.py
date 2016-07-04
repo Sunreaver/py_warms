@@ -9,6 +9,8 @@ import github.sunreaver.py_tools.system as sys
 from jinja2 import Template
 import requests
 
+ShadowsocksX_gfwlist_js = "/Users/theone/.ShadowsocksX/gfwlist.js"
+
 
 def getNetworkGfwlist():
     # c = Network.HttpsClient(host)
@@ -54,7 +56,7 @@ else:
     print("faile")
 
 try:
-    os.replace(fileName, "/Users/theone/.ShadowsocksX/gfwlist.js")
+    os.replace(fileName, ShadowsocksX_gfwlist_js)
 except Exception as e:
     print("Copy Err:", e)
 else:
