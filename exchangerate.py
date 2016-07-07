@@ -44,7 +44,7 @@ try:
     rate = connection.Stocks.rate
 except Exception as e:
     print("mongo err:", e)
-    exit(0)
+    raise Exception("MongoClientErr")
 
 dic = []
 for v in rows:
