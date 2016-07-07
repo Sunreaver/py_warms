@@ -27,7 +27,7 @@ rate = None
 connection = None
 try:
     connection = pymongo.MongoClient("localhost", 27017)
-    connection.Stocks.authenticate("stocks", "1111", timeout=10)
+    connection.Stocks.authenticate("stocks", "1111")
     dbcl = connection.Stocks.rate
 except Exception as e:
     print("mongo err:", e)
