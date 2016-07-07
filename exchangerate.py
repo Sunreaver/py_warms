@@ -34,7 +34,7 @@ except Exception as e:
     print("mongo err:", e)
     exit(0)
 
-dic = [{}]
+dic = []
 for v in rows:
     dic.append({
                'name': v[0],
