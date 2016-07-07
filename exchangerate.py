@@ -50,10 +50,10 @@ dic = []
 for v in rows:
     dic.append({
                'name': v[0],
-               'init': v[1],
+               'init': int(v[1]),
                'base': v[2],
-               'midPrice': v[3],
-               'sellPrice': v[4],
+               'midPrice': float(v[3]),
+               'sellPrice': float(v[4]),
                'time': "{0}-{1}-{2} ".format(date[0], date[1], date[2]) + v[8]
                })
 
