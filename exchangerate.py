@@ -15,7 +15,7 @@ regDate = re.compile(r"""
 """)
 date = regDate.findall(m.text)
 if len(date) == 0:
-    lo = time.localtime
+    lo = time.localtime()
     date = [time.strftime("%Y", lo),
             time.strftime("%m", lo),
             time.strftime("%d", lo)]
